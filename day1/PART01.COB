@@ -19,11 +19,11 @@ AOC20 * ADVENT OF CODE 2020 DAY ONE PART ONE
        WORKING-STORAGE SECTION.
        01 WS-INPUT-NUMBER PIC 9(4).
        01 WS-EOF PIC 9.
-       01 WS-I PIC 999.
-       01 WS-J PIC 999.
+       01 WS-I PIC 9(3).
+       01 WS-J PIC 9(3).
        01 WS-DONE PIC 9.
-       01 WS-RESULT PIC 999999.
-       01 WS-ITEMS OCCURS 200 TIMES PIC 9999.
+       01 WS-RESULT PIC 9(6).
+       01 WS-ITEMS OCCURS 200 TIMES PIC 9(4).
 
        PROCEDURE DIVISION.
            MOVE 1 TO WS-I.
@@ -42,11 +42,10 @@ AOC20 * ADVENT OF CODE 2020 DAY ONE PART ONE
            PERFORM UNTIL WS-I > 200
              MOVE 1 TO WS-J
              PERFORM UNTIL WS-J > 200
-               MOVE WS-ITEMS (WS-I) TO WS-RESULT
-               ADD WS-ITEMS (WS-J) TO WS-RESULT
+               ADD WS-ITEMS (WS-I) WS-ITEMS(WS-J) GIVING WS-RESULT
                IF WS-RESULT = 2020 THEN
-                 MOVE WS-ITEMS (WS-I) TO WS-RESULT
-                 MULTIPLY WS-ITEMS (WS-J) BY WS-RESULT
+                 MULTIPLY WS-ITEMS (WS-I) BY WS-ITEMS (WS-J) GIVING
+                 WS-RESULT
                  DISPLAY "PART01: " WS-RESULT
                  MOVE 1 TO WS-DONE
                  EXIT PERFORM
